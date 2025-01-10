@@ -16,7 +16,7 @@ For the purpose of this tutorial, RNAseq1stgenN1 will be used as an example.
 ## Checking fastq quality using **FastQC**
 On command-line run fastqc on an individual fastq file or a folder containing all files. 
 ```bash
-fastqc filename.fastq.gz
+fastqc LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R1_001.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R2_002.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R1_001.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R2_002.fastq.gz 
 ```
 You can view FastQC Report from the generated .html file.
 
