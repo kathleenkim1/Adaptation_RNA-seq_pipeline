@@ -13,6 +13,10 @@ This documentation will go through the pipeline used to process raw fastq RNA-se
 
 ## Checking fastq quality using **FastQC**
 
+```r
+fastqc filename.fastq.gz
+```
+You can view FastQC Report from the generated .html file.
 
 ## Trimming adapters with **cutadapt** 
 For each sample, there are two forward read files and two reverse read files. This code will trim bases with a Phred score lower than 30 and reads shorter than 20 base pairs are discarded. This will also trim the Illumina Truseq I5 (AATGATACGGCGACCACCGAGATCTACAC[i5]ACACTCTTTCCCTACACGACGCTCTTCCGATCT) and I7 adapters (GATCGGAAGAGCACACGTCTGAACTCCAGTCAC[i7]ATCTCGTATGCCGTCTTCTGCTTG)  
