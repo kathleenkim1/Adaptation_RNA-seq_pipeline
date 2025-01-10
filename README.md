@@ -2,7 +2,7 @@
 A step-by-step data processing pipeline for RNA-seq data used for GSE255871 from the Greer Lab. 
 
 ## Introduction
-This documentation will go through the pipeline used to process raw fastq RNA-sequencing files to a counts matrix. This pipeline uses the following tools that require prior installation: 
+This documentation will go through the pipeline used to process raw fastq RNA-sequencing files to a counts matrix and DGE table. This pipeline uses the following tools that require prior installation: 
 - [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 - [CutAdapt 4.0](https://cutadapt.readthedocs.io/en/stable/installation.html)
 - [Bowtie2](https://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
@@ -81,3 +81,52 @@ mapped/4thN1aligned.sorted.bam mapped/4thN2aligned.sorted.bam mapped/4thN3aligne
 mapped/4thH1aligned.sorted.bam mapped/4thH2aligned.sorted.bam mapped/4thH3aligned.sorted.bam
 ```
 The `countsmatrix.txt` can be converted to a .csv for future analysis usage.  
+
+## Creating DEG tables for each generation from counts matrix using R
+
+```{r}
+#Install R packages as needed: 
+library(DESeq2)
+library(AnnotationDbi)
+library("org.Ce.eg.db")
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+
+#from featurecounts count matrix, separate by generation
+my_count_matrix <- read.delim("countsmatrix.csv", header = TRUE, row.names = 1, sep = ",")
+
+first_exposure_count_matrix <- my_count_matrix[, c(1:6)]
+second_exposure_count_matrix  <- my_count_matrix[, c(7:12)]
+third_exposure_count_matrix  <- my_count_matrix[, c(13:18)]
+fourth_exposure_count_matrix  <- my_count_matrix[, c(19:24)]
+
+
+#function for running DE 
+Get_DEGs = function(counts_matrix, dataframe_name){
+counts <- counts_matrix
+
+#filter any genes with counts less than 350
+counts <- counts[which(rowSums(counts) > 350),]
+condition <- factor(c("Normoxia", "Normoxia", "Normoxia","Hypoxia","Hypoxia","Hypoxia"))
+coldata <- data.frame(row.names = colnames(counts), condition)
+dds <- DESeqDataSetFromMatrix(countData = counts, colData = coldata, design = ~condition)
+dds <- DESeq(dds)
+res <- results(dds, contrast = c("condition", "Hypoxia", "Normoxia"))
+significant_genes <- na.omit(res)
+significant_genes <- significant_genes[significant_genes$padj < 0.05,]
+significant_genes_df <- as.data.frame(significant_genes)
+significant_genes_df$symbol <- mapIds(org.Ce.eg.db, keys = rownames(significant_genes_df), keytype = "ENSEMBL", column = "SYMBOL")
+print(summary(res))
+print(nrow(significant_genes_df))
+assign(dataframe_name, significant_genes_df, envir = .GlobalEnv)
+}
+
+#run function for each generation
+
+Get_DEGs(first_exposure_count_matrix, "first_exposure_sig_df")
+Get_DEGs(second_exposure_count_matrix, "second_exposure_sig_df")
+Get_DEGs(third_exposure_count_matrix, "third_exposure_sig_df")
+Get_DEGs(fourth_exposure_count_matrix, "fourth_exposure_sig_df")
+```
+
