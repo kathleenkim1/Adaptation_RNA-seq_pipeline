@@ -57,6 +57,7 @@ bowtie2 -x GCF_000002985.6_WBcel235_genomic  -1 1stgenN1read1combined.fastq.gz -
 ```
 After alignment, you will have 1 file per sample:
 - 1stgenN1aligned.sam
+
 These files must now be converted from sam --> bam --> sorted bam using the following code. 
 
 ```bash
