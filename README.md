@@ -4,11 +4,12 @@ A step-by-step data processing pipeline for RNA-seq data used for GSE255871 from
 ## Introduction
 This documentation will go through the pipeline used to process raw fastq RNA-sequencing files to a counts matrix and DGE table. This pipeline uses the following tools that require prior installation: 
 - [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-- [CutAdapt 4.0] (https://cutadapt.readthedocs.io/en/stable/installation.html)
-- [Bowtie2] (https://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
-- [SamTools] (https://github.com/samtools/samtools)
-- [FeatureCounts] (https://subread.sourceforge.net/featureCounts.html)
-- [WBcel235] (https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000002985.6/) Download the WBcel235 genome in GTF format
+- [CutAdapt 4.0](https://cutadapt.readthedocs.io/en/stable/installation.html)
+- [Bowtie2](https://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
+- [SamTools](https://github.com/samtools/samtools)
+- [FeatureCounts](https://subread.sourceforge.net/featureCounts.html)
+- [WBcel235](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000002985.6/)
+    - Download the WBcel235 genome in GTF format
 
 ## Checking fastq quality using **FastQC**
 
