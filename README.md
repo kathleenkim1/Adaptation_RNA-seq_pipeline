@@ -11,7 +11,7 @@ This pipeline will use utadapt, Bowtie, FeatureCounts
 ## Trimming adapters with **cutadapt** 
 For each sample, there are two forward read files and two reverse read files. This code will trim bases with a Phred score lower than 30 and reads shorter than 20 base pairs are discarded.  
 
-```r
+
 -q 30,30 -a AATGATACGGCGACCACCGAGATCTACAC**XXXXXXXX**ACACTCTTTCCCTACACGACGCTCTTCCGATCT -A GATCGGAAGAGCACACGTCTGAACTCCAGTCAC**XXXXXXXX**ATCTCGTATGCCGTCTTCTGCTTG -o **Read1_output_filename**.fastq.gz -p **Read2_output_filname**.fastq.gz** Read1_filename**.fastq.gz** Read2_filename**.fastq.gz
 
 
