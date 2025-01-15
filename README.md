@@ -21,7 +21,7 @@ fastqc LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R1_001.fastq.gz LIB058795_T
 You can view FastQC Report from the generated .html file.
 
 ## Trimming adapters with **cutadapt** 
-For each sample, there are two forward read files and two reverse read files from lane 1 (L1) and lane 2 (L2). For RNAseq1stgenN1 and all other samples will have these 4 types of files:   
+For each sample, there are two forward read files (R1) and two reverse read files (R2) from lane 1 (L1) and lane 2 (L2). For RNAseq1stgenN1 and all other samples will have these 4 types of files:   
 - LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R1_001.fastq.gz 
 - LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R2_001.fastq.gz
 - LIB058795_TRA00258830_RNAseq1stgenN1_S22_L002_R1_001.fastq.gz 
@@ -41,7 +41,7 @@ After successfully trimming, you will have 4 output files per sample:
 - firstN1two.1.fastq.gz 
 - firstN1two.2.fastq.gz
 
-These files can know be concatenated by lanes:
+These files can now be concatenated by lanes:
 ```bash
 cat firstN1one.1.fastq.gz firstN1two.1.fastq.gz > 1stgenN1read1combined.fastq.gz 
 cat firstN1one.2.fastq.gz firstN1two.2.fastq.gz > 1stgenN1read2combined.fastq.gz
