@@ -30,11 +30,11 @@ For each sample, there are two forward read files (R1) and two reverse read file
 On command-line run: 
 ```bash
 #Sample cutadapt command
--q 30,30 -a AATGATACGGCGACCACCGAGATCTACACAATAACGTACACTCTTTCCCTACACGACGCTCTTCCGATCT -A GATCGGAAGAGCACACGTCTGAACTCCAGTCACAATCGTTAATCTCGTATGCCGTCTTCTGCTTG -o firstN1one.1.fastq.gz -p firstN1one.2.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R1_001.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R2_001.fastq.gz 
+-q 30,30 -m 20 -a AATGATACGGCGACCACCGAGATCTACACAATAACGTACACTCTTTCCCTACACGACGCTCTTCCGATCT -A GATCGGAAGAGCACACGTCTGAACTCCAGTCACAATCGTTAATCTCGTATGCCGTCTTCTGCTTG -o firstN1one.1.fastq.gz -p firstN1one.2.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R1_001.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L001_R2_001.fastq.gz 
 
--q 30,30 -a AATGATACGGCGACCACCGAGATCTACACAATAACGTACACTCTTTCCCTACACGACGCTCTTCCGATCT -A GATCGGAAGAGCACACGTCTGAACTCCAGTCACAATCGTTAATCTCGTATGCCGTCTTCTGCTTG -o firstN1two.1.fastq.gz -p firstN1two.2.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L002_R1_001.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L002_R2_001.fastq.gz
+-q 30,30 -m 20 -a AATGATACGGCGACCACCGAGATCTACACAATAACGTACACTCTTTCCCTACACGACGCTCTTCCGATCT -A GATCGGAAGAGCACACGTCTGAACTCCAGTCACAATCGTTAATCTCGTATGCCGTCTTCTGCTTG -o firstN1two.1.fastq.gz -p firstN1two.2.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L002_R1_001.fastq.gz LIB058795_TRA00258830_RNAseq1stgenN1_S22_L002_R2_001.fastq.gz
 ```
-This code will trim bases with a Phred score lower than 30 and reads shorter than 20 base pairs are discarded. This will also trim the Illumina Truseq I5 (AATGATACGGCGACCACCGAGATCTACAC[i5]ACACTCTTTCCCTACACGACGCTCTTCCGATCT) and I7 adapters (GATCGGAAGAGCACACGTCTGAACTCCAGTCAC[i7]ATCTCGTATGCCGTCTTCTGCTTG). i5 and i7 adapters for each sample can be found in [Hypoxia_Adaptation_Library_Indices.csv](https://github.com/kathleenkim1/Adaptation_RNA-seq_pipeline/blob/main/Hypoxia_Adaptation_Library_Indices.csv) file uploaded to this repository.  
+This code will trim bases with a Phred score lower than 30 and reads shorter than 20 base pairs are discarded. This will also trim the Illumina Truseq i5 (AATGATACGGCGACCACCGAGATCTACAC[XXXXXXXX]ACACTCTTTCCCTACACGACGCTCTTCCGATCT) and i7 adapters (GATCGGAAGAGCACACGTCTGAACTCCAGTCAC[XXXXXXXX]ATCTCGTATGCCGTCTTCTGCTTG). i5 and i7 adapters for each sample can be found in [Hypoxia_Adaptation_Library_Indices.csv](https://github.com/kathleenkim1/Adaptation_RNA-seq_pipeline/blob/main/Hypoxia_Adaptation_Library_Indices.csv) file uploaded to this repository.  
 After successfully trimming, you will have 4 output files per sample: 
 - firstN1one.1.fastq.gz  
 - firstN1one.2.fastq.gz 
